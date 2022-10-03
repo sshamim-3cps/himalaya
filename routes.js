@@ -1,3 +1,4 @@
+const getUser = require('./lambdas/GetUser/index.js'); 
 const postTicket = require('./lambdas/PostTicket/index.js'); 
 const apiGatewayTransform = require('./middleware/aws-api-request-transform');
 const express = require('express')
@@ -21,6 +22,9 @@ router.all('/*', async (req, res) => {
     switch (`${event.httpMethod} ${event.resource}`) {
     case 'POST /ticket':
         response = await postTicket.handler(event);
+        break;
+    case 'GET /user':
+        response = await getUser.handler(event);
         break;
         default:
             response = {

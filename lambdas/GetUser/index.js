@@ -1,16 +1,17 @@
-exports.handler = async function postTicket(event) {
+exports.handler = async function getUser(event) {
     try {
         // customize your code accordingly
-        console.log("Recieved Event (path: [PostTicket])", event);
+        console.log("Recieved Event (path: [GetUser])", event);
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: "Your ticket has been generated"
+                username: "sshamim",
+                organization:"3clogic"
             })
         };
     }
     catch (err) {
-        console.error("Error occured in postTicket: ", err)
+        console.error("Error occured in getUser: ", err)
         return {
             statusCode: 500,
             body: JSON.stringify({ message: 'INTERNAL_SERVER_ERROR' })
