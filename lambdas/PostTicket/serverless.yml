@@ -1,0 +1,30 @@
+service: Himalaya
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  memorySize: 512 
+  timeout: 15
+  region: us-east-1
+  # apiGateway:
+  #   apiKeys:
+  #     - your-api-key
+  
+functions:
+  PostTicket:
+    handler: index.handler
+    architecture: arm64
+    # layers:
+    #   - arn:aws:lambda:region:XXXXXX:layer:LayerName:Y
+    # description: Description of what the lambda function does # optional, Description to publish to AWS
+    # runtime: nodejs12.x # optional overwrite, default is provider runtime
+    # memorySize: 512 
+    # timeout: 10
+    # environment:
+    #   ENV_VARIABLE_NAME: ENV_VARIABLE_value
+    events:
+     - http:
+         path: /ticket
+         method: POST
+         #private: true #uncomment when using api-key
